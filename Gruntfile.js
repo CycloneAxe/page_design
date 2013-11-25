@@ -20,10 +20,6 @@ module.exports = function (grunt) {
             dist: 'dist'
         },
         watch: {
-            jade: {
-                files: ['<%= yeoman.app %>/*.jade', '<%= yeoman.app %>/views/**/{,*/}*.jade', '<%= yeoman.app %>/view/{,*/}*.jade'],
-                tasks: ['jade:dist']
-            },
             compass: {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
                 tasks: ['compass:server', 'autoprefixer']
@@ -31,6 +27,10 @@ module.exports = function (grunt) {
             styles: {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
                 tasks: ['copy:styles', 'autoprefixer']
+            },
+            jade: {
+                files: ['<%= yeoman.app %>/{,*/}*.jade', '<%= yeoman.app %>/views/{,*/}*.jade'],
+                tasks: ['jade:server']
             },
             livereload: {
                 options: {
@@ -285,6 +285,7 @@ module.exports = function (grunt) {
         },
         concurrent: {
             server: [
+                'jade:server',
                 'compass',
                 'copy:styles'
             ],
@@ -304,13 +305,29 @@ module.exports = function (grunt) {
                 options: {
                     pretty: true
                 },
-                files: [{
-                    expand: true,
-                    cwd: '<%= yeoman.app %>',
-                    dest: '.tmp',
-                    src: '*.jade',
-                    ext: '.html'
-                }]
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= yeoman.app %>',
+                        dest: '.tmp',
+                        src: '{,*/}*.jade',
+                        ext: '.html'
+                    }
+                ]
+            },
+            server: {
+                options: {
+                    pretty: true
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= yeoman.app %>',
+                        dest: '.tmp',
+                        src: '{,*/}*.jade',
+                        ext: '.html'
+                    }
+                ]
             }
         }
 
@@ -324,7 +341,6 @@ module.exports = function (grunt) {
         grunt.task.run([
             'clean:server',
             'concurrent:server',
-            'jade',
             'autoprefixer',
             'connect:livereload',
             'watch'
@@ -346,7 +362,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
-        'jade',
+        'jade:dist',
         'useminPrepare',
         'concurrent:dist',
         'autoprefixer',
