@@ -56,16 +56,14 @@ body {
         
         .article-list-heading {
             color: #51554E;
+            padding: 0px;
             a:hover {
                 color: #428bca;
             }
 
-            h4 {
-                padding-top: 4px;
-            }
-            
             .article-sorting {
                 font-size: 0.9em;
+                margin-bottom: 4px;
 
                 i {
                     padding:5px;

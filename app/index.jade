@@ -1,46 +1,34 @@
 extends layout
 
 block content
-  .alert-messages
-    .alert.alert-success.alert-dismissable
-      button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
-      strong 恭喜
-      |  登录成功.
-    .alert.alert-info.alert-dismissable.hide
-      button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
-      strong Heads up!
-      | This alert needs your attention, but it's not super important.
-    .alert.alert-warning.alert-dismissable.hide
-      button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
-      strong Warning!
-      | Best check yo self, you're not looking too good.
-    .alert.alert-danger.alert-dismissable.hide
-      button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
-      strong Oh snap!
-      | Change a few things up and try submitting again.
+  
+  include alert-messages
+
+  include breadcrumb
 
   .col-md-9.article-list.corner-radius.panel.panel-default
     .panel-heading.article-list-heading
-      h4.panel-title.pull-left
-        a(data-toggle='collapse', data-parent='#accordion', href='#collapseOne')
-          span.glyphicon.glyphicon-file
-          |  帖子列表
-      .pull-right.middle.article-sorting
-        a(href='#') 
-          i.glyphicon.glyphicon-time 
-          | 最近发表 
-        |  /  
-        a(href='#') 
-          i.glyphicon.glyphicon-ok 
-          | 精华帖子 
-        |  / 
-        a(href='#') 
-          i.glyphicon.glyphicon-thumbs-up 
-          | 最多投票 
-        |  / 
-        a(href='#') 
-          i.glyphicon.glyphicon-eye-open 
-          | 无人问津
+      ul.pull-right.middle.article-sorting.breadcrumb
+        li
+          a(href='#') 
+            i.glyphicon.glyphicon-time 
+            | 最近发表 
+          span.divider 
+        li
+          a(href='#') 
+            i.glyphicon.glyphicon-ok 
+            | 精华帖子 
+          span.divider 
+        li 
+          a(href='#') 
+            i.glyphicon.glyphicon-thumbs-up 
+            | 最多投票 
+          span.divider 
+        li
+          a(href='#') 
+            i.glyphicon.glyphicon-eye-open 
+            | 无人问津
+ 
 
       .clearfix
     - for (var i=0; i<15; i++)
