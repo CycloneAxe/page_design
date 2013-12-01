@@ -6,7 +6,7 @@
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href='#') PHPHub
+      a.navbar-brand(href='/') PHPHub
 
     .navbar-collapse.collapse#top-navbar-collapse
       ul.nav.navbar-nav
@@ -21,19 +21,22 @@
       form.navbar-form.navbar-left(role='search')
         .form-group
           input.form-control(type='text', placeholder='Search')
-        button.btn.btn-default(type='submit') Submit
+        button.btn.btn-default(type='submit').btn-circle
+          i.glyphicon.glyphicon-search
+            
+            
       ul.nav.navbar-nav.navbar-right
         li
-          a(href='http://www.jquery2dotnet.com') 注册
+          a(href='register.html') 注册
         li.dropdown
-          a.dropdown-toggle(href='http://www.jquery2dotnet.com', data-toggle='dropdown')
+          a.dropdown-toggle(href='login.html', data-toggle='dropdown')
             | 登录
             b.caret
           ul.dropdown-menu(style='padding: 15px; min-width: 250px;')
             li
               .row
                 .col-md-12
-                  form#login-nav.form(role='form', method='post', action='login', accept-charset='UTF-8')
+                  form#login-nav.form(role='form', method='post', action='login.html', accept-charset='UTF-8')
                     .form-group
                       label.sr-only(for='exampleInputEmail2') Email address
                       input#exampleInputEmail2.form-control(type='email', placeholder='Email address', required='required')

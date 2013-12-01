@@ -1,24 +1,68 @@
 extends layout
 
 block content
-  .container.main
-    .col-md-9.article-list.corner-radius.panel.panel-default
-      .panel-heading
-        h4.panel-title.pull-left
-          a(data-toggle='collapse', data-parent='#accordion', href='#collapseOne')
-            span.glyphicon.glyphicon-file
-            |  帖子列表
-        .pull-right 查看: 默认 /  优质帖子 / 无人问津 / 最新创建
-        .clearfix
-      - for (var i=0; i<20; i++)
-        include item
+  .alert-messages
+    .alert.alert-success.alert-dismissable
+      button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+      strong 恭喜
+      |  登录成功.
+    .alert.alert-info.alert-dismissable.hide
+      button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+      strong Heads up!
+      | This alert needs your attention, but it's not super important.
+    .alert.alert-warning.alert-dismissable.hide
+      button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+      strong Warning!
+      | Best check yo self, you're not looking too good.
+    .alert.alert-danger.alert-dismissable.hide
+      button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+      strong Oh snap!
+      | Change a few things up and try submitting again.
 
-    .col-sm-3.side-bar
-      .panel.panel-default.corner-radius
-        .panel-heading
-          h3.panel-title Panel title
-        .panel-body
-          | Panel content
+  .col-md-9.article-list.corner-radius.panel.panel-default
+    .panel-heading.article-list-heading
+      h4.panel-title.pull-left
+        a(data-toggle='collapse', data-parent='#accordion', href='#collapseOne')
+          span.glyphicon.glyphicon-file
+          |  帖子列表
+      .pull-right.middle.article-sorting
+        a(href='#') 
+          i.glyphicon.glyphicon-time 
+          | 最近发表 
+        |  /  
+        a(href='#') 
+          i.glyphicon.glyphicon-ok 
+          | 精华帖子 
+        |  / 
+        a(href='#') 
+          i.glyphicon.glyphicon-thumbs-up 
+          | 最多投票 
+        |  / 
+        a(href='#') 
+          i.glyphicon.glyphicon-eye-open 
+          | 无人问津
 
-    .clearfix
-    
+      .clearfix
+    - for (var i=0; i<15; i++)
+      include item
+  
+    ul.pagination.buttom-pager.pull-right
+      li.disabled
+        a(href='#') «
+      li.active
+        a(href='#') 1
+      li
+        a(href='#') 2
+      li
+        a(href='#') 3
+      li
+        a(href='#') 4
+      li
+        a(href='#') 5
+      li
+        a(href='#') »
+
+  include rightnav 
+  .clearfix
+
+
