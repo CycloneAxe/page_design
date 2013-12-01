@@ -1,0 +1,174 @@
+extends layout
+
+block content
+  
+  include breadcrumb
+
+  .col-md-9.topic-view.content
+    .topic-content.topics.hfeed.box-block
+      .topic.hentry
+        .infos
+          .pull-right.avatar_large
+            a.avatar(href='/tyaccp_guojian')
+              img.uface(alt='5453', src='holder.js/64x64')
+          h1.entry-title Ember.js: 怎么在点击按钮的时候动态的将某个 View 渲染到 applicatoin 模板的某个 outlet 中？[已更新]
+          .info.leader
+            a.node(href='/topics/node28') 其他
+            | •
+            a(data-author='true', data-name='Juo', href='/tyaccp_guojian') tyaccp_guojian
+            | •
+            | 于
+            abbr.timeago(title='2013-11-29T17:44:56+08:00') 2天前
+            | 发布
+            | •
+            | 最后由
+            a(data-name='darkbaby123', href='/darkbaby123') darkbaby123
+            | 于
+            abbr.timeago(title='2013-12-01T17:00:43+08:00') 1小时前
+            | 回复
+            | •
+            | 276次阅读
+        .body.entry-content
+          p
+            strong 后端使用Rails，前端使用Ember.js
+          p 怎么在点击按钮的时候动态的将某个View渲染到applicatoin模板的某个outlet中？
+          hr
+          h4
+            strong 已修改
+          p 写了一个简单的例子是出来了，但是我们的项目结构有点复杂，用你博客中的文章举例子说一下
+          p
+            | Rails项目，使用
+            a(href='https://github.com/emberjs/ember-rails') ember-rails
+          p
+            | 然后，
+            code app/assets/javascripts/emberapps
+            | 目录有很多子目录，每个目录都是一个完整的Ember应用
+          p
+            | 假设现在有一个目录名叫: photoalbums，这个目录下面是一个Ember应用，在
+            code /photoalbums
+            | 的模板中点击按钮执行
+            code PhotoalbumsRoute
+            | 中定义的
+            code showUploadPicture
+            | 方法，在这个方法中调用
+            code Ember.Route.reopen
+            | 中自定义的方法
+            code showModal
+            | 方法，**关键**就在这个地方:
+          p
+            strong 调用showModal
+            | 方法的时候，需要传递一个
+            code view name
+            | ，但是因为项目结构，所以这个地方不像例子里面的name简单，
+            code view name
+            | 得写
+            code emberapps/photoalbums/upload_picture
+            | ，然后定义Ember.UploadPictureView，继承自Ember.ModalBodyView
+          p 代码是下面这样:
+          pre.highlight.ruby.
+            # PhotoalbumsRoute
+            ...
+            events:
+              showUploadPicture:->
+                Ember.Route.showModal this, "emberapps/photoalbums/upload_picture"
+            ...                          
+          pre.highlight.coffeescript.
+            Ember.Route.reopenClass
+              showModal: (router, name, model) ->
+                router.render name,
+                  into: "emberapps/cloudpanel/modal"
+                  outlet: "modalBody"                                 
+          p
+            | 运行，inspect看代码，发现html都render进去了，但是Ember.ModalBodyView的didInsertElement没有执行，我认为原因是
+            code emberapps/photoalbums/upload_picture
+            | 这个view name和UploadPictureView没有关联上
+          p 希望有兴趣的朋友可以一起探讨一下这个问题，我可以提供更多细节
+        .tools.pull-right.small
+          a(data-followed='false', data-id='15887', href='#', onclick='return Topics.follow(this);', rel='twipsy', data-original-title='')
+            i.glyphicon.glyphicon-eye-open
+            |  关注
+          a.likeable(data-count='0', data-id='15887', data-state='', data-type='Topic', href='#', onclick='return App.likeable(this);', rel='twipsy', data-original-title='喜欢')
+            i.glyphicon.glyphicon-heart-empty
+            span  喜欢
+          a(data-id='15887', href='#', onclick='return Topics.favorite(this);', rel='twipsy', data-original-title='收藏')
+            i.glyphicon.glyphicon-bookmark
+            span  收藏
+        .social-share-button(data-title='Ember.js: 怎么在点击按钮的时候动态的将某个 View 渲染到 applicatoin 模板的某个 outlet 中？[已更新] via: @ruby_china ', data-img='', data-url='')
+          a.social-share-button-twitter(data-site='twitter', href='#', onclick='return SocialShareButton.share(this);', rel='nofollow ', title='分享到Twitter')
+          a.social-share-button-facebook(data-site='facebook', href='#', onclick='return SocialShareButton.share(this);', rel='nofollow ', title='分享到Facebook')
+          a.social-share-button-google_plus(data-site='google_plus', href='#', onclick='return SocialShareButton.share(this);', rel='nofollow ', title='分享到Google+')
+          a.social-share-button-weibo(data-site='weibo', href='#', onclick='return SocialShareButton.share(this);', rel='nofollow ', title='分享到新浪微博')
+          a.social-share-button-douban(data-site='douban', href='#', onclick='return SocialShareButton.share(this);', rel='nofollow ', title='分享到豆瓣')
+    
+    .replies.box_gray.box-block
+      .total
+        | 共收到
+        b 17
+        | 条回复
+      .items
+        - for (var i=0; i<15; i++)
+          include reply
+
+    .reply-box.form.box-block
+      .editor_toolbar
+        .icons.pull-right
+        ul.pills.list-unstyled.list-inline(style='clear: none;')
+          li.edit.active
+            a.badge(href='#') 编辑
+          li.preview
+            a(href='#') 预览
+      form#new_reply.new_reply(accept-charset='UTF-8', action='/topics/15887/replies', data-remote='true', method='post')
+        div(style='margin: 0; padding: 0; display: inline;')
+          input(name='utf8', type='hidden', value='✓')
+        textarea.col-md-10#reply_body.topic_editor.span10(name='reply[body]', rows='4', tabindex='1')
+        #preview.markdown_body(style='display: none;')
+        .submit_buttons
+          button#btn_reply.btn.btn-primary(type='submit', tabindex='2') 提交回复
+          br
+          span.help-inline(title='或者 Command + Enter') Ctrl+Enter
+        .clearfix
+        span.body.helpblock
+          ul
+            li
+              | 支持 Markdown 格式,
+              strong **粗体**
+              | 、~~删除线~~、
+              code `单行代码`
+            li
+              | 支持表情，见
+              a(href='http://www.emoji-cheat-sheet.com', target='_blank', rel='nofollow') Emoji cheat sheet
+            li
+              | 按“M”键查看更多
+              a(href='#markdown_help_tip_modal', data-toggle='modal', data-keyboard='true', data-backdrop='true') 帮助
+              | 。
+          #markdown_help_tip_modal.modal.hide.fade
+            .modal-header
+              a.close(href='#', data-dismiss='modal') ×
+              h4 格式说明
+            .modal-body
+              ul
+                li 支持 Markdown 格式
+                li
+                  strong **粗体**
+                  | 、~~删除线~~、
+                  code `单行代码`
+                li http://example.org 自动加链接
+                li @name  会链接到用户页面，并会通知他
+                li ![Alt text here](http://foo.com/bar.jpg) 显示图片
+                li
+                  | 多行代码格式，使用3个`包起来，注意要换行，第一个```后面接语言名称(ruby,bash,html,css,python,erb,java...
+                  a(href='http://pygments.org/docs/lexers/', target='_blank') 更多
+                  | )
+                  br
+                  | 比如这样：
+                  pre(style='border: 0; background: #FFF; margin: 0;').
+                    \n```ruby
+                    class Hello
+                    end
+                    ```           
+ 
+
+  include rightnav 
+  .clearfix
+
+
