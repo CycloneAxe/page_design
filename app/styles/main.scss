@@ -15,7 +15,10 @@ body {
     height: 100%;
     color:#333333;
 }
-
+img.emoji {
+    width: 20px;
+    height: 20px;
+}
 
 body {
     background-image: url(../images/body-bg.png);
@@ -136,6 +139,16 @@ body {
                 font-size: 0.9em;
             }
         }
+
+        .user_github_repos {
+            padding: 0px;
+
+            ul li {
+                padding: 10px 10px 0px;
+                border-bottom: 1px solid #eee;
+            }
+        }
+
     }
 
     
@@ -149,6 +162,17 @@ body {
         -webkit-box-shadow: 0 0px 2px rgba(0,0,0,0.05);
         -moz-box-shadow: 0 0px 2px rgba(0,0,0,0.05);
         box-shadow: 0 0px 2px rgba(0,0,0,0.05);
+
+        h2.title {
+            font-size: 12px;
+            margin: 0 -10px;
+            padding: 0 10px;
+            margin-bottom: 8px;
+            color: #999;
+            line-height: 100%;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+        }
     }
 
 
@@ -477,6 +501,82 @@ body {
         }
 
     }
+
+    .view-member-info {
+
+
+        .member-info {
+
+            dl dt, dl dd {
+                font-size: 14px;
+                line-height: 180%;
+                border-bottom: 1px dashed #eee;
+            }
+        }
+
+
+        .hot-topic-by-member {
+            ul {
+                list-style:none;
+                margin:0;
+                padding-left: 0px;
+            }
+            ul li {
+                border-bottom:1px dashed #ddd;
+                padding:3px
+            }
+            ul li i.icon {
+                margin-bottom:-1px
+            }
+            ul li .info {
+                font-size:12px;
+                color:#bbb
+            }
+            ul li .node {
+                margin-right:5px
+            }
+            ul li .node a {
+                color:#444
+            }
+        }
+
+        .recent-replies-by-member {
+
+            list-style:none;
+            margin:0;
+            
+            li {
+                margin-top:8px;
+                border-bottom:1px dashed #ddd
+            }
+            li .title {
+                font-size:14px
+            }
+            li .title .info {
+                font-size:12px;
+                color:#bbb
+            }
+            li .body {
+                margin-top:6px;
+                color:#666
+            }
+            li .body a {
+                color:#333
+            }
+            li .body p {
+                font-size:13px
+            }
+            li .body img {
+                max-width:680px
+            }
+        }
+
+
+        
+
+    }
+
+
 
 
     .content {
