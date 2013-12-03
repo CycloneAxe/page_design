@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  
+  .col-md-12.box-block.view-members
+    h2.title.text-center TOP 108 活跃会员 (目前已经有 10381 位会员加入了 PHPhub。)
+    
+    - for (var i=0; i<108; i++)
+      include members_item
