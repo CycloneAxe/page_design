@@ -504,12 +504,11 @@ body {
 
     .view-member-info {
 
-
-        
-
         .nav-tabs {
             margin-bottom: 15px;    
             border-bottom: none;
+            background-color: white;
+            border-radius: 18px;
 
             li.active > a {
                 border-radius: 18px;
@@ -526,13 +525,15 @@ body {
             }
             dl dt {
                 width: 125px;
+                font-weight: normal;
+                color: #bbb;
             }
             dl dd {
                 margin-left: 142px;
             }
 
             .avatar {
-                margin:20px;
+                margin:40px;
             }
             dl {
                 margin-top: 30px;
