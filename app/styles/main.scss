@@ -505,12 +505,37 @@ body {
     .view-member-info {
 
 
+        
+
+        .nav-tabs {
+            margin-bottom: 15px;    
+            border-bottom: none;
+
+            li.active > a {
+                border-radius: 18px;
+                border-bottom-color: #dddddd;
+            }
+        }
+
         .member-info {
 
             dl dt, dl dd {
                 font-size: 14px;
                 line-height: 180%;
                 border-bottom: 1px dashed #eee;
+            }
+            dl dt {
+                width: 125px;
+            }
+            dl dd {
+                margin-left: 142px;
+            }
+
+            .avatar {
+                margin:20px;
+            }
+            dl {
+                margin-top: 30px;
             }
         }
 
@@ -569,6 +594,15 @@ body {
             li .body img {
                 max-width:680px
             }
+            .info {
+                margin-left: 5px;
+
+                abbr {
+                    margin-left: 4px;
+                }
+            }
+
+
         }
 
 
