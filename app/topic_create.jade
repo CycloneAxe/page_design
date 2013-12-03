@@ -1,0 +1,28 @@
+extends layout
+
+block content
+
+  .topic_create
+    .col-md-9
+      .reply-box.form.box-block
+        form#new_reply.new_reply(accept-charset='UTF-8', action='/topics/15887/replies', data-remote='true', method='post')
+          .topic_create_title.col-md-12
+            input.form-control(type='text', placeholder='请填写标题')
+          .editor_toolbar
+            ul.pills.list-unstyled.list-inline(style='clear: none;')
+              li.edit.active
+                a.badge(href='#') 编辑
+              li.preview
+                a(href='#') 预览
+          textarea.col-md-12#reply_body.topic_editor.reply-box-big(name='reply[body]', rows='4', tabindex='1', placeholder='请使用 Markdown 格式书写 ;-) ')
+          #preview.markdown_body(style='display: none;')
+
+          button#btn_reply.btn.btn-primary(type='submit', tabindex='2') 提交回复
+            
+            //- span.help-inline(title='或者 Command + Enter') Ctrl+Enter
+          .clearfix
+
+              
+      
+    include topic_create_rightnav
+    
