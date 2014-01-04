@@ -5,3 +5,12 @@ dist
 app/bower_components
 app/*.html
 test/bower_components
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+ 
